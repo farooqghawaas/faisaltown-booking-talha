@@ -57,10 +57,7 @@ svg{display:block}
 main{padding:0 14px 32px}
 .card{max-width:520px;margin:-80px auto 0;background:var(--card);border-radius:22px;box-shadow:0 1px 2px rgba(16,24,20,.04),0 20px 50px -20px rgba(14,58,45,.28);position:relative;z-index:2}
 .sec{padding:24px 20px}
-.sec + .sec{border-top:1px solid var(--line)}
 .sec-title{display:flex;align-items:center;gap:10px;font-size:1.08rem;font-weight:800;margin-bottom:16px}
-.num{width:26px;height:26px;border-radius:8px;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-size:.8rem;font-weight:800;transition:.2s}
-.sec.complete .num{background:var(--green);color:#fff}
 
 .field + .field{margin-top:16px}
 .lb{display:block;font-size:.88rem;font-weight:700;margin-bottom:7px}
@@ -84,40 +81,8 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .chip{height:46px;padding:0 10px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font-size:.88rem;font-weight:600;color:#34403A;transition:.15s}
 .chip[aria-pressed=true]{background:var(--green);border-color:var(--green);color:#fff}
 
-/* ---------- Date strip ---------- */
-.days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;margin:0 -2px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.days::-webkit-scrollbar{display:none}
-.day{flex:0 0 64px;scroll-snap-align:start;padding:10px 4px;border:1.5px solid var(--line);border-radius:14px;background:#fff;text-align:center;transition:.15s}
-.day .d1{display:block;font-size:.72rem;font-weight:700;color:var(--muted);white-space:nowrap}
-.day .d2{display:block;font-size:1.5rem;font-weight:800;line-height:1.15;margin:2px 0}
-.day .d3{display:block;font-size:.72rem;font-weight:600;color:var(--muted)}
-.day:disabled{opacity:.35;cursor:not-allowed}
-.day[aria-pressed=true]{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 8px 18px -10px rgba(14,58,45,.6)}
-.day[aria-pressed=true] .d1,.day[aria-pressed=true] .d3{color:rgba(255,255,255,.8)}
-.strip-wrap{position:relative}
-.strip-wrap::after{content:"";position:absolute;right:-2px;top:0;bottom:10px;width:28px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);pointer-events:none}
-
-/* ---------- Time slots ---------- */
-.placeholder{padding:18px;border:1.5px dashed var(--line);border-radius:14px;color:var(--muted);text-align:center;font-size:.9rem}
-.period + .period{margin-top:14px}
-.period h3{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:8px}
-.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.slot{height:48px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-weight:700;font-size:.92rem;line-height:1.15;transition:.15s}
-.slot small{display:block;font-size:.66rem;font-weight:600;color:var(--green-2)}
-.slot.has-local{height:54px}
-.slot[aria-pressed=true]{background:var(--green);border-color:var(--green);color:#fff}
-.slot[aria-pressed=true] small{color:rgba(255,255,255,.8)}
-.bad .day,.bad .slot{border-color:#EDC2BE}
-
-.pick-label{display:flex;justify-content:space-between;align-items:baseline;font-size:.88rem;font-weight:700;margin-bottom:8px}
-.pick-label span{font-weight:500;color:var(--muted);font-size:.78rem}
-
 /* ---------- Footer of form ---------- */
 .actions{padding:0 20px 22px}
-.recap{display:none;align-items:center;gap:12px;padding:14px;border-radius:14px;background:var(--gold-soft);border:1px solid #EFE0BF;margin-bottom:14px;font-size:.92rem}
-.recap.show{display:flex}
-.recap .rico{width:38px;height:38px;border-radius:10px;background:var(--gold);display:grid;place-items:center;flex-shrink:0}
-.recap b{font-weight:800}
 .cta{width:100%;height:58px;border:none;border-radius:14px;background:var(--green);color:#fff;font-size:1.05rem;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .15s,transform .1s;box-shadow:0 10px 24px -12px rgba(14,58,45,.7)}
 .cta:hover{background:var(--green-2)}
 .cta:active{transform:scale(.99)}
@@ -150,7 +115,6 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
 .link-row button{height:38px;padding:0 14px;border:none;border-radius:10px;background:var(--green);color:#fff;font-weight:700}
 
 @media (min-width:600px){ .hero{padding-top:44px} .sec{padding:28px} .actions{padding:0 28px 28px} }
-@media (max-width:340px){ .slots{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -159,8 +123,8 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
 <!-- Netlify detects this hidden form at deploy time and keeps a backup of every lead -->
 <form name="booking" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input name="salesperson"><input name="name"><input name="whatsapp"><input name="city"><input name="job_title">
-  <input name="interest"><input name="budget"><input name="day"><input name="time">
-  <input name="client_time"><textarea name="note"></textarea><input name="source"><input name="bot-field">
+  <input name="interest"><input name="budget">
+  <textarea name="note"></textarea><input name="source"><input name="bot-field">
 </form>
 
 <div id="app">
@@ -181,7 +145,7 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
   <div class="card">
     <form id="form" novalidate>
       <section class="sec" id="fs1">
-        <h2 class="sec-title"><span class="num">1</span>Your details</h2>
+        <h2 class="sec-title">Your details</h2>
 
         <div class="field" id="f-name">
           <label class="lb" for="name">Full name <span class="req">*</span></label>
@@ -226,28 +190,7 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
         </div>
       </section>
 
-      <section class="sec" id="fs2">
-        <h2 class="sec-title"><span class="num">2</span>When should we call? <span class="opt" style="font-size:.85rem;font-weight:500;color:var(--muted)">(optional)</span></h2>
-
-        <div class="field" id="f-day">
-          <div class="pick-label">Choose a day</div>
-          <div class="strip-wrap"><div class="days" id="days" role="group" aria-label="Choose a day"></div></div>
-          
-        </div>
-
-        <div class="field" id="f-time">
-          <div class="pick-label">Choose a time <span id="tzHelp">Pakistan time</span></div>
-          <div id="times"><div class="placeholder">Choose a day first to see times</div></div>
-          
-        </div>
-
-      </section>
-
       <div class="actions">
-        <div class="recap" id="recap">
-          <span class="rico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0E3A2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
-          <span id="recapText"></span>
-        </div>
         <button class="cta" type="submit" id="submit">Book my free call</button>
         <p class="safe"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your details are shared only with your advisor</p>
       </div>
@@ -255,7 +198,7 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
 
     <div class="done" id="done" aria-live="polite">
       <div class="tick"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-      <h2>Your call is booked</h2>
+      <h2>Request received</h2>
       <p id="doneLine"></p>
       <div class="ticket" id="ticket"></div>
       <a class="wa-btn" id="waBtn" href="#" target="_blank" rel="noopener">
@@ -285,20 +228,12 @@ const CONFIG = {
   defaultRep: "talha",                 // used when the link has no ?rep=
   copyEmail: "",                       // optional: your own email to get a copy of every lead
 
-  daysShown: 14,                       // how many days to offer (starting today)
-  closedWeekdays: [],                  // e.g. [0] closes Sundays (0=Sun … 6=Sat)
-
-  openHour: 9,                         // first time slot, Pakistan time (24h)
-  closeHour: 23.5,                     // last time slot (23.5 = 11:30 PM)
-  slotMinutes: 30,                     // gap between time slots
-
   interests: ["Residential plot","Commercial plot"],
   budgets: ["Under 50 lakh","50 lakh to 1 crore","1 to 2 crore","2 to 5 crore","Above 5 crore"],
   footer: "© Faisal Town II"
 };
 /* ===================================================================== */
 
-const PKT = 5;
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 
@@ -330,8 +265,6 @@ $("avatar").innerHTML = rep.photo
 
 /* ---------- Visitor setup ---------- */
 const visitorTz = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Karachi";
-const inPk = new Date().getTimezoneOffset() === -PKT*60;
-$("tzHelp").textContent = inPk ? "Pakistan time" : "Pakistan time, yours in green";
 
 const CODES = [["+92","🇵🇰"],["+971","🇦🇪"],["+966","🇸🇦"],["+974","🇶🇦"],["+968","🇴🇲"],["+965","🇰🇼"],["+973","🇧🇭"],["+44","🇬🇧"],["+1","🇺🇸"],["+61","🇦🇺"],["+49","🇩🇪"],["+33","🇫🇷"],["+39","🇮🇹"],["+34","🇪🇸"],["+60","🇲🇾"],["+81","🇯🇵"]];
 const tzCode = {"Asia/Dubai":"+971","Asia/Riyadh":"+966","Asia/Qatar":"+974","Asia/Muscat":"+968","Asia/Kuwait":"+965","Asia/Bahrain":"+973","Europe/London":"+44","Australia/Sydney":"+61","Australia/Melbourne":"+61","Europe/Berlin":"+49","Europe/Paris":"+33","Europe/Rome":"+39","Europe/Madrid":"+34","Asia/Kuala_Lumpur":"+60","Asia/Tokyo":"+81"}[visitorTz]
@@ -343,7 +276,7 @@ $("budget").innerHTML = `<option value="">Select a range</option>` + CONFIG.budg
 $("interest").innerHTML = CONFIG.interests.map(i => `<button type="button" class="chip" data-v="${i}" aria-pressed="false">${i}</button>`).join("");
 
 /* ---------- State ---------- */
-const S = { interest:[], day:null, time:null };
+const S = { interest:[] };
 
 $("interest").addEventListener("click", e => {
   const b = e.target.closest(".chip"); if (!b) return;
@@ -352,75 +285,10 @@ $("interest").addEventListener("click", e => {
   S.interest = on ? [...S.interest, b.dataset.v] : S.interest.filter(x => x !== b.dataset.v);
 });
 
-/* ---------- Helpers ---------- */
-const fmt = (utc, tz, o) => new Date(utc).toLocaleString("en-US", {timeZone:tz, ...o});
-const hourText = h => fmt(Date.UTC(2000,0,1,Math.floor(h),Math.round((h%1)*60)), "UTC", {hour:"numeric", minute: h%1 ? "2-digit" : undefined});
-const nowPk = new Date(Date.now() + PKT*3600e3);
-const todayPk = Date.UTC(nowPk.getUTCFullYear(), nowPk.getUTCMonth(), nowPk.getUTCDate());
-const slotUtc = (day, h) => day + (h - PKT)*3600e3;
-function slotsFor(day){
-  const out = [], lead = Date.now() + 30*60e3;
-  for (let h = CONFIG.openHour; h <= CONFIG.closeHour + 1e-9; h += CONFIG.slotMinutes/60){
-    const utc = slotUtc(day, h);
-    if (utc >= lead) out.push({ h, utc });
-  }
-  return out;
-}
-const dayOpen = day => !CONFIG.closedWeekdays.includes(new Date(day).getUTCDay()) && slotsFor(day).length > 0;
-const dayIdx = d => Math.round((d - todayPk)/864e5);
-const dayName = d => { const i = dayIdx(d); return i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmt(d,"UTC",{weekday:"long"}); };
-const pkTime = utc => fmt(utc,"Asia/Karachi",{hour:"numeric",minute:"2-digit"});
-
-/* ---------- Days ---------- */
-let html = "";
-for (let i = 0; i < CONFIG.daysShown; i++){
-  const d = todayPk + i*864e5;
-  const top = i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmt(d,"UTC",{weekday:"short"});
-  html += `<button type="button" class="day" data-d="${d}" aria-pressed="false" ${dayOpen(d) ? "" : "disabled"}
-    aria-label="${dayName(d)}, ${fmt(d,"UTC",{day:"numeric",month:"long"})}">
-    <span class="d1">${top}</span><span class="d2">${fmt(d,"UTC",{day:"numeric"})}</span><span class="d3">${fmt(d,"UTC",{month:"short"})}</span></button>`;
-}
-$("days").innerHTML = html;
-
-$("days").addEventListener("click", e => {
-  const b = e.target.closest(".day"); if (!b || b.disabled) return;
-  const same = S.day === +b.dataset.d;
-  S.day = same ? null : +b.dataset.d; S.time = null;
-  $("days").querySelectorAll(".day").forEach(x => x.setAttribute("aria-pressed", !same && x === b));
-  if (same){ $("times").innerHTML = '<div class="placeholder">Choose a day first to see times</div>'; update(); return; }
-  ok("f-day"); renderTimes(); update();
-});
-
-/* ---------- Times ---------- */
-const PERIODS = [
-  ["☀️ Morning",   h => h < 12],
-  ["🌤️ Afternoon", h => h >= 12 && h < 17],
-  ["🌇 Evening",   h => h >= 17 && h < 20],
-  ["🌙 Night",     h => h >= 20]
-];
-function renderTimes(){
-  const list = slotsFor(S.day);
-  $("times").innerHTML = PERIODS.map(([label, test]) => {
-    const g = list.filter(s => test(s.h)); if (!g.length) return "";
-    return `<div class="period"><h3>${label}</h3><div class="slots">${g.map(s => {
-      const local = inPk ? "" : `<small>${fmt(s.utc, visitorTz, {hour:"numeric", minute:"2-digit"})} yours</small>`;
-      return `<button type="button" class="slot${inPk ? "" : " has-local"}" data-u="${s.utc}" aria-pressed="${S.time === s.utc}">${pkTime(s.utc)}${local}</button>`;
-    }).join("")}</div></div>`;
-  }).join("");
-}
-
-$("times").addEventListener("click", e => {
-  const b = e.target.closest(".slot"); if (!b) return;
-  const same = S.time === +b.dataset.u;
-  S.time = same ? null : +b.dataset.u;
-  $("times").querySelectorAll(".slot").forEach(x => x.setAttribute("aria-pressed", !same && x === b));
-  ok("f-time"); update();
-});
-
 /* ---------- Validation ---------- */
 const bad = id => $(id).classList.add("bad");
 const ok  = id => $(id).classList.remove("bad");
-["name","phone","city","job"].forEach(id => $(id).addEventListener("input", () => { ok("f-" + id); update(); }));
+["name","phone","city","job"].forEach(id => $(id).addEventListener("input", () => ok("f-" + id)));
 
 function phoneE164(){
   let n = $("phone").value.replace(/\D/g, "");
@@ -432,14 +300,6 @@ function phoneE164(){
 }
 const validPhone = () => { const p = phoneE164(); return p.local.length >= 7 && p.local.length <= 12 && !($("cc").value === "+92" && p.local.length !== 10); };
 
-function update(){
-  $("fs1").classList.toggle("complete", $("name").value.trim().length > 1 && validPhone() && $("city").value.trim().length > 1 && $("job").value.trim().length > 1);
-  $("fs2").classList.toggle("complete", S.day !== null);
-  if (S.day !== null){
-    $("recapText").innerHTML = `${rep.name} will call you <b>${dayName(S.day)}</b>` + (S.time ? ` at <b>${pkTime(S.time)}</b>` : "");
-    $("recap").classList.add("show");
-  } else $("recap").classList.remove("show");
-}
 
 /* ---------- Submit ---------- */
 $("form").addEventListener("submit", async e => {
@@ -450,7 +310,7 @@ $("form").addEventListener("submit", async e => {
   if (!validPhone()) errs.push("f-phone");
   if (city.length < 2) errs.push("f-city");
   if (job.length < 2) errs.push("f-job");
-    errs.forEach(bad);
+  errs.forEach(bad);
   if (errs.length){ $(errs[0]).scrollIntoView({behavior:"smooth", block:"center"}); return; }
 
   const p = phoneE164();
@@ -462,9 +322,6 @@ $("form").addEventListener("submit", async e => {
     job_title: job,
     interest: S.interest.join(", "),
     budget: $("budget").value,
-    day: S.day !== null ? fmt(S.day,"UTC",{weekday:"long",day:"numeric",month:"long",year:"numeric"}) : "Any day",
-    time: S.time ? `${pkTime(S.time)} PKT` : "Any time",
-    client_time: !S.time ? "" : inPk ? "Same as PKT" : `${fmt(S.time, visitorTz, {weekday:"short",hour:"numeric",minute:"2-digit"})} (${visitorTz})`,
     note: $("note").value.trim(),
     source: [params.get("utm_source"), params.get("utm_campaign"), params.get("utm_content")].filter(Boolean).join(" / ") || (params.has("fbclid") ? "Facebook / Instagram ad" : "Direct")
   };
@@ -494,10 +351,6 @@ $("form").addEventListener("submit", async e => {
     `*Job title:* ${lead.job_title}`,
     lead.interest ? `*Interested in:* ${lead.interest}` : null,
     lead.budget ? `*Budget:* ${lead.budget}` : null,
-    ``,
-    `*Call on:* ${lead.day}`,
-    `*Time:* ${lead.time}`,
-    (inPk || !S.time) ? null : `*Client's time:* ${lead.client_time}`,
     lead.note ? `\n*Message:* ${lead.note}` : null,
     ``,
     `_Source: ${lead.source}_`
@@ -523,9 +376,6 @@ $("form").addEventListener("submit", async e => {
           "Interested in": lead.interest || "-",
           "Budget": lead.budget || "-",
           "Message": lead.note || "-",
-          "Call on": lead.day,
-          "Time": lead.time,
-          "Client's time": lead.client_time || "-",
           "Salesperson": rep.name,
           "Source": lead.source
         })
@@ -535,12 +385,10 @@ $("form").addEventListener("submit", async e => {
   } catch(err) {}
 
   $("waBtn").href = waUrl;
-  $("doneLine").textContent = S.day !== null
-    ? `Thanks, ${name.split(" ")[0]}. ${rep.name} will call you at this time.`
-    : `Thanks, ${name.split(" ")[0]}. ${rep.name} will call you soon.`;
+  $("doneLine").textContent = `Thanks, ${name.split(" ")[0]}. ${rep.name} will contact you soon.`;
   $("ticket").innerHTML = [
-    ["Day", S.day !== null ? `${dayName(S.day)}, ${fmt(S.day,"UTC",{day:"numeric",month:"short"})}` : "Any day"],
-    ["Time", S.time ? `${pkTime(S.time)} PKT` : "Any time"],
+    ["Name", lead.name],
+    ["WhatsApp", lead.whatsapp],
     ["Advisor", rep.name]
   ].map(([k,v]) => `<div><span>${k}</span><strong>${v}</strong></div>`).join("");
 
