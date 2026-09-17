@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Book a Free Consultation</title>
+<meta name="description" content="Book a free video consultation with our property advisor.">
+<meta name="theme-color" content="#0F3B2E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ================= META PIXEL: paste your Pixel ID ================= -->
+<script>
+  const PIXEL_ID = "YOUR_PIXEL_ID";
+  if (PIXEL_ID && PIXEL_ID !== "YOUR_PIXEL_ID") {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID); fbq('track', 'PageView');
+  }
+</script>
+
+<style>
+:root{
+  --pine:#0F3B2E; --pine-2:#1B5443; --pine-3:#2A6B57;
+  --moss:#E6EFE8; --paper:#F7F9F7; --ink:#15201B; --muted:#5D6A64;
+  --brass:#C0913F; --brass-soft:#F5ECDB; --line:#D7E0DA; --danger:#B3261E; --wa:#1FA855;
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Figtree",system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+h1,h2,h3{font-family:"Bricolage Grotesque",Georgia,serif;letter-spacing:-.015em;line-height:1.1}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+
+/* ---------- Top ---------- */
+.top{background:var(--pine);color:#fff;padding:22px 20px 96px;position:relative;overflow:hidden}
+.top::before{ /* plot-map lines */
+  content:"";position:absolute;inset:-20px;opacity:.08;pointer-events:none;
+  background-image:
+    linear-gradient(#fff 1.5px,transparent 1.5px),
+    linear-gradient(90deg,#fff 1.5px,transparent 1.5px),
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:132px 132px,132px 132px,22px 22px,22px 22px;
+  transform:rotate(-8deg);
+  mask-image:radial-gradient(ellipse at 85% 30%,#000 20%,transparent 70%)}
+.inner{max-width:560px;margin:0 auto;position:relative}
+.brand{font-weight:700;font-size:.95rem;color:#CFE3D8;display:flex;align-items:center;gap:8px}
+.brand::before{content:"";width:10px;height:10px;background:var(--brass);border-radius:2px;transform:rotate(45deg)}
+.top h1{font-size:clamp(2rem,8.5vw,2.9rem);margin-top:26px;font-weight:700}
+.top p{margin-top:10px;color:#D5E6DC;font-size:1.05rem;max-width:40ch}
+.perks{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;list-style:none}
+.perks li{font-size:.85rem;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.1);color:#E8F2EC}
+
+/* ---------- Card ---------- */
+main{padding:0 14px 40px}
+.card{max-width:560px;margin:-72px auto 0;background:#fff;border-radius:20px;box-shadow:0 18px 40px -24px rgba(15,59,46,.45);border:1px solid var(--line);overflow:hidden;position:relative}
+
+.advisor{display:flex;gap:14px;align-items:center;padding:18px 20px;background:var(--brass-soft);border-bottom:1px solid #EADBC0}
+.avatar{width:56px;height:56px;border-radius:50%;flex-shrink:0;background:var(--pine);color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.2rem;overflow:hidden;border:2px solid #fff}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.advisor small{display:block;color:#7A6333;font-size:.8rem;font-weight:600}
+.advisor strong{display:block;font-size:1.1rem}
+.advisor span{color:var(--muted);font-size:.88rem}
+
+form{padding:8px 20px 22px}
+fieldset{border:none;padding:22px 0 4px;min-width:0}
+fieldset + fieldset{margin-top:14px;box-shadow:0 -1px 0 var(--line)}
+legend{float:left;width:100%;display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque",serif;font-weight:700;font-size:1.15rem;padding:0;margin-bottom:4px}
+legend .n{width:26px;height:26px;border-radius:50%;background:var(--pine);color:#fff;font-family:"Figtree",sans-serif;font-size:.8rem;display:grid;place-items:center;transition:background .2s}
+fieldset.complete legend .n{background:var(--brass)}
+
+.field{margin-top:14px;clear:both}
+label.lb{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+.opt{font-weight:400;color:var(--muted)}
+input[type=text],input[type=tel],input[type=email],select,textarea{
+  width:100%;padding:13px 14px;min-height:50px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);font-size:16px}
+input:focus,select:focus,textarea:focus{border-color:var(--pine-2);outline:none;box-shadow:0 0 0 3px rgba(27,84,67,.14);background:#fff}
+textarea{min-height:84px;resize:vertical}
+.phone{display:flex;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden}
+.phone:focus-within{border-color:var(--pine-2);box-shadow:0 0 0 3px rgba(27,84,67,.14);background:#fff}
+.phone select{width:auto;min-height:48px;border:none;border-right:1.5px solid var(--line);border-radius:0;background:transparent;padding:0 8px;box-shadow:none}
+.phone input{border:none;background:transparent;box-shadow:none!important}
+.help{font-size:.8rem;color:var(--muted);margin-top:5px}
+.err{display:none;color:var(--danger);font-size:.84rem;margin-top:5px;font-weight:500}
+.bad .err{display:block}
+.bad input,.bad select,.bad .phone{border-color:var(--danger)}
+.bad .chips .chip,.bad .opts .opt-card{border-color:#E3B1AD}
+
+/* option cards */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt-card{display:flex;flex-direction:column;gap:2px;padding:14px;border:1.5px solid var(--line);border-radius:var(--r);background:#fff;text-align:left;min-height:84px;transition:border-color .15s,background .15s}
+.opt-card .ic{font-size:1.4rem;line-height:1}
+.opt-card b{margin-top:6px}
+.opt-card small{color:var(--muted);font-size:.8rem}
+.opt-card[aria-pressed=true]{border-color:var(--pine);background:var(--moss);box-shadow:inset 0 0 0 1px var(--pine)}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:10px 14px;min-height:44px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font-weight:500;font-size:.93rem}
+.chip[aria-pressed=true]{background:var(--pine);border-color:var(--pine);color:#fff}
+
+.days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.day{flex:0 0 66px;scroll-snap-align:start;padding:10px 4px;border:1.5px solid var(--line);border-radius:var(--r);background:#fff;text-align:center;line-height:1.15}
+.day small{display:block;font-size:.72rem;color:var(--muted);font-weight:600}
+.day b{display:block;font-size:1.35rem;font-family:"Bricolage Grotesque",serif;margin:3px 0 1px}
+.day:disabled{opacity:.35;cursor:default}
+.day[aria-pressed=true]{background:var(--pine);border-color:var(--pine);color:#fff}
+.day[aria-pressed=true] small{color:#CFE3D8}
+
+.period{margin-top:14px}
+.period h3{font-family:"Figtree",sans-serif;font-size:.82rem;color:var(--muted);font-weight:600;margin-bottom:8px}
+.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.time{padding:9px 4px;min-height:46px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-weight:600;line-height:1.2}
+.time small{display:block;font-weight:400;font-size:.7rem;color:var(--muted)}
+.time[aria-pressed=true]{background:var(--pine);border-color:var(--pine);color:#fff}
+.time[aria-pressed=true] small{color:#CFE3D8}
+.placeholder{padding:16px;border:1.5px dashed var(--line);border-radius:var(--r);color:var(--muted);text-align:center;font-size:.92rem;margin-top:12px}
+
+.recap{margin-top:18px;padding:14px 16px;border-radius:var(--r);background:var(--moss);font-size:.93rem;display:none}
+.recap.show{display:block}
+.recap b{color:var(--pine)}
+
+.cta{position:relative;width:100%;margin-top:20px;padding:17px;border:none;border-radius:var(--r);background:var(--pine);color:#fff;font-weight:700;font-size:1.08rem}
+.cta:hover{background:var(--pine-2)}
+.cta:disabled{opacity:.65;cursor:wait}
+.safe{margin-top:10px;font-size:.8rem;color:var(--muted);text-align:center}
+
+/* done */
+.done{display:none;padding:34px 22px 30px;text-align:center}
+.done.show{display:block}
+.tick{width:76px;height:76px;margin:0 auto 16px;border-radius:50%;background:var(--pine);color:#fff;display:grid;place-items:center;font-size:2.1rem;animation:pop .45s cubic-bezier(.3,1.5,.6,1)}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.done h2{font-size:1.7rem}
+.done p{color:var(--muted);margin-top:8px}
+.ticket{margin:20px auto 0;max-width:340px;text-align:left;border:1.5px dashed var(--line);border-radius:var(--r);padding:14px 16px;font-size:.93rem}
+.ticket div{display:flex;justify-content:space-between;gap:12px;padding:4px 0}
+.ticket span{color:var(--muted)}
+.wa-btn{display:flex;justify-content:center;gap:8px;align-items:center;margin:22px auto 0;max-width:340px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;padding:16px;border-radius:var(--r)}
+.last-step{margin-top:10px;font-size:.85rem;color:var(--muted)}
+
+footer{text-align:center;font-size:.8rem;color:var(--muted);padding:6px 16px 28px}
+
+/* link list (?links) */
+.links{max-width:640px;margin:30px auto;padding:0 16px}
+.links h1{font-size:1.8rem}
+.links p{color:var(--muted);margin:6px 0 18px}
+.link-row{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;flex-wrap:wrap}
+.link-row code{font-size:.85rem;word-break:break-all;color:var(--pine-3)}
+.link-row button{padding:8px 14px;border-radius:10px;border:none;background:var(--pine);color:#fff;font-weight:600}
+
+@media (max-width:380px){ .opts{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- Netlify detects this hidden form at deploy time and keeps a backup of every lead -->
+<form name="booking" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="salesperson"><input name="name"><input name="whatsapp"><input name="email">
+  <input name="city"><input name="interest"><input name="budget"><input name="platform">
+  <input name="date"><input name="time_pkt"><input name="time_visitor">
+  <textarea name="note"></textarea><input name="source"><input name="bot-field">
+</form>
+
+<div id="app">
+<header class="top">
+  <div class="inner">
+    <div class="brand" id="brand"></div>
+    <h1>Book a free property consultation</h1>
+    <p id="subline"></p>
+    <ul class="perks">
+      <li>Free video call</li>
+      <li>Latest prices and plans</li>
+      <li>Takes 1 minute</li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="advisor">
+      <div class="avatar" id="avatar"></div>
+      <div>
+        <small>Your advisor</small>
+        <strong id="repName"></strong>
+        <span id="repTitle"></span>
+      </div>
+    </div>
+
+    <form id="form" novalidate>
+      <!-- 1 -->
+      <fieldset id="fs1">
+        <legend><span class="n">1</span>About you</legend>
+
+        <div class="field" id="f-name">
+          <label class="lb" for="name">Full name</label>
+          <input type="text" id="name" autocomplete="name" placeholder="e.g. Ali Raza">
+          <div class="err">Please enter your name.</div>
+        </div>
+
+        <div class="field" id="f-phone">
+          <label class="lb" for="phone">WhatsApp number</label>
+          <div class="phone">
+            <select id="cc" aria-label="Country code"></select>
+            <input type="tel" id="phone" inputmode="tel" autocomplete="tel-national" placeholder="300 1234567">
+          </div>
+          <div class="help">We will confirm your meeting on this number.</div>
+          <div class="err">Please enter a valid WhatsApp number.</div>
+        </div>
+
+        <div class="field">
+          <label class="lb" for="city">City <span class="opt">(optional)</span></label>
+          <input type="text" id="city" autocomplete="address-level2" placeholder="e.g. Islamabad, Dubai">
+        </div>
+
+        <div class="field">
+          <label class="lb">Interested in <span class="opt">(optional)</span></label>
+          <div class="chips" data-group="interest"></div>
+        </div>
+
+        <div class="field">
+          <label class="lb" for="budget">Budget <span class="opt">(optional)</span></label>
+          <select id="budget"></select>
+        </div>
+      </fieldset>
+
+      <!-- 2 -->
+      <fieldset id="fs2">
+        <legend><span class="n">2</span>How should we meet?</legend>
+        <div class="field" id="f-platform">
+          <div class="opts" data-group="platform">
+            <button type="button" class="opt-card" data-v="WhatsApp" aria-pressed="false"><span class="ic">💬</span><b>WhatsApp</b><small>Video call on your number</small></button>
+            <button type="button" class="opt-card" data-v="Google Meet" aria-pressed="false"><span class="ic">📹</span><b>Google Meet</b><small>Link sent to your email</small></button>
+          </div>
+          <div class="err">Please choose WhatsApp or Google Meet.</div>
+        </div>
+        <div class="field" id="f-email" hidden>
+          <label class="lb" for="email">Email for the Meet link</label>
+          <input type="email" id="email" autocomplete="email" placeholder="you@example.com">
+          <div class="err">Please enter a valid email.</div>
+        </div>
+      </fieldset>
+
+      <!-- 3 -->
+      <fieldset id="fs3">
+        <legend><span class="n">3</span>Pick a day and time</legend>
+        <div class="field" id="f-date">
+          <div class="days" id="days" role="group" aria-label="Choose a day"></div>
+          <div class="err">Please choose a day.</div>
+        </div>
+        <div class="field" id="f-time">
+          <div id="times"><div class="placeholder">Choose a day to see open times.</div></div>
+          <div class="help" id="tzHelp"></div>
+          <div class="err">Please choose a time.</div>
+        </div>
+        <div class="field">
+          <label class="lb" for="note">Anything we should know? <span class="opt">(optional)</span></label>
+          <textarea id="note" placeholder="Plot size, block, questions…"></textarea>
+        </div>
+      </fieldset>
+
+      <div class="recap" id="recap"></div>
+      <button class="cta" type="submit" id="submit">Book my consultation</button>
+      <p class="safe">🔒 Your details are shared only with your advisor.</p>
+    </form>
+
+    <div class="done" id="done" aria-live="polite">
+      <div class="tick">✓</div>
+      <h2>You're booked in</h2>
+      <p id="doneLine"></p>
+      <div class="ticket" id="ticket"></div>
+      <a class="wa-btn" id="waBtn" href="#" target="_blank" rel="noopener">💬 Send booking on WhatsApp</a>
+      <p class="last-step">One last step: tap <b>Send</b> in WhatsApp so your advisor receives it.</p>
+    </div>
+  </div>
+</main>
+<footer id="footer"></footer>
+</div>
+
+<script>
+/* =====================================================================
+   SETTINGS: edit this block only
+   ===================================================================== */
+const CONFIG = {
+  brand: "Faisal Town II",
+  subline: "Talk to our advisor about plots, prices and payment plans from wherever you are.",
+
+  // One entry per salesperson. Link for each: yoursite.netlify.app/?rep=ID
+  // whatsapp: digits only with country code. photo: optional image file uploaded with the site (e.g. "kamran.jpg")
+  team: [
+    { id:"kamran", name:"Kamran I. Kiani", title:"Senior Property Advisor", whatsapp:"923241718900", photo:"" },
+    { id:"ali",    name:"Ali Khan",        title:"Property Advisor",        whatsapp:"923000000001", photo:"" },
+    { id:"usman",  name:"Usman Ahmed",     title:"Property Advisor",        whatsapp:"923000000002", photo:"" }
+  ],
+  defaultRep: "kamran",               // used when the link has no ?rep=
+
+  openHour: 9,                         // first slot, Pakistan time (24h)
+  closeHour: 23.5,                     // last slot start (23.5 = 11:30 PM)
+  slotMinutes: 30,
+  daysShown: 14,                       // how many days ahead to show
+  closedWeekdays: [],                  // e.g. [0] closes Sundays (0=Sun … 6=Sat)
+
+  interests: ["Residential plot","Commercial plot","House / villa","Apartment","Investment"],
+  budgets: ["Under 50 lakh","50 lakh to 1 crore","1 to 2 crore","2 to 5 crore","Above 5 crore"],
+  footer: "© Faisal Town II"
+};
+/* ===================================================================== */
+
+const PKT = 5;
+const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+
+/* ---------- Link list page: yoursite/?links ---------- */
+if (params.has("links")) {
+  const base = location.origin + location.pathname;
+  document.getElementById("app").outerHTML = `<div class="links"><h1>Salesperson links</h1>
+    <p>Use each link in that salesperson's Meta ad. Leads go to their WhatsApp.</p>
+    ${CONFIG.team.map(r => {
+      const url = `${base}?rep=${r.id}`;
+      return `<div class="link-row"><div><strong>${r.name}</strong><br><code>${url}</code></div>
+      <button onclick="navigator.clipboard.writeText('${url}').then(()=>{this.textContent='Copied'})">Copy link</button></div>`;
+    }).join("")}</div>`;
+  throw new Error("links view");
+}
+
+/* ---------- Salesperson ---------- */
+const repId = (params.get("rep") || "").toLowerCase();
+const rep = CONFIG.team.find(r => r.id === repId) || CONFIG.team.find(r => r.id === CONFIG.defaultRep) || CONFIG.team[0];
+$("brand").textContent = CONFIG.brand;
+$("subline").textContent = CONFIG.subline;
+$("footer").textContent = CONFIG.footer;
+$("repName").textContent = rep.name;
+$("repTitle").textContent = rep.title;
+document.title = `Book a Free Consultation with ${rep.name} | ${CONFIG.brand}`;
+$("avatar").innerHTML = rep.photo
+  ? `<img src="${rep.photo}" alt="${rep.name}">`
+  : rep.name.split(" ").filter(w => /^[A-Za-z]/.test(w)).map(w => w[0]).slice(0,2).join("");
+
+/* ---------- Visitor setup ---------- */
+const visitorTz = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Karachi";
+const inPk = new Date().getTimezoneOffset() === -PKT*60;
+$("tzHelp").textContent = inPk ? "All times are Pakistan time."
+  : `Times are Pakistan time. Your local time is shown underneath.`;
+
+const CODES = [["+92","🇵🇰"],["+971","🇦🇪"],["+966","🇸🇦"],["+974","🇶🇦"],["+968","🇴🇲"],["+965","🇰🇼"],["+973","🇧🇭"],["+44","🇬🇧"],["+1","🇺🇸"],["+61","🇦🇺"],["+49","🇩🇪"],["+33","🇫🇷"],["+39","🇮🇹"],["+34","🇪🇸"],["+60","🇲🇾"],["+81","🇯🇵"]];
+const tzCode = {"Asia/Dubai":"+971","Asia/Riyadh":"+966","Asia/Qatar":"+974","Asia/Muscat":"+968","Asia/Kuwait":"+965","Asia/Bahrain":"+973","Europe/London":"+44","Australia/Sydney":"+61","Australia/Melbourne":"+61","Europe/Berlin":"+49","Europe/Paris":"+33","Europe/Rome":"+39","Europe/Madrid":"+34","Asia/Kuala_Lumpur":"+60","Asia/Tokyo":"+81"}[visitorTz]
+  || (visitorTz.startsWith("America/") ? "+1" : "+92");
+$("cc").innerHTML = CODES.map(([c,f]) => `<option value="${c}">${f} ${c}</option>`).join("");
+$("cc").value = tzCode;
+
+$("budget").innerHTML = `<option value="">Select a range</option>` + CONFIG.budgets.map(b => `<option>${b}</option>`).join("");
+document.querySelector('[data-group="interest"]').innerHTML =
+  CONFIG.interests.map(i => `<button type="button" class="chip" data-v="${i}" aria-pressed="false">${i}</button>`).join("");
+
+/* ---------- State ---------- */
+const S = { interest:[], platform:"", day:null, time:null };
+
+/* interest: multi select */
+document.querySelector('[data-group="interest"]').addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  const on = b.getAttribute("aria-pressed") !== "true";
+  b.setAttribute("aria-pressed", on);
+  S.interest = on ? [...S.interest, b.dataset.v] : S.interest.filter(x => x !== b.dataset.v);
+});
+
+/* platform */
+document.querySelector('[data-group="platform"]').addEventListener("click", e => {
+  const b = e.target.closest(".opt-card"); if (!b) return;
+  S.platform = b.dataset.v;
+  document.querySelectorAll(".opt-card").forEach(x => x.setAttribute("aria-pressed", x === b));
+  $("f-email").hidden = S.platform !== "Google Meet";
+  ok("f-platform"); update();
+  if (S.platform === "Google Meet") $("email").focus();
+});
+
+/* ---------- Days & times ---------- */
+const fmt = (utc, tz, o) => new Date(utc).toLocaleString("en-US", {timeZone:tz, ...o});
+const nowPk = new Date(Date.now() + PKT*3600e3);
+const todayPk = Date.UTC(nowPk.getUTCFullYear(), nowPk.getUTCMonth(), nowPk.getUTCDate());
+
+function slots(dayUtc){
+  const out = [], lead = Date.now() + 30*60e3;
+  for (let h = CONFIG.openHour; h <= CONFIG.closeHour; h += CONFIG.slotMinutes/60){
+    const utc = dayUtc + (h - PKT)*3600e3;
+    if (utc >= lead) out.push({ utc, h });
+  }
+  return out;
+}
+
+let daysHtml = "";
+for (let i = 0; i < CONFIG.daysShown; i++){
+  const d = todayPk + i*864e5, wd = new Date(d).getUTCDay();
+  const closed = CONFIG.closedWeekdays.includes(wd) || !slots(d).length;
+  const top = i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmt(d,"UTC",{weekday:"short"});
+  daysHtml += `<button type="button" class="day" data-d="${d}" aria-pressed="false" ${closed?"disabled":""}
+    aria-label="${fmt(d,"UTC",{weekday:"long",day:"numeric",month:"long"})}">
+    <small>${top}</small><b>${fmt(d,"UTC",{day:"numeric"})}</b><small>${fmt(d,"UTC",{month:"short"})}</small></button>`;
+}
+$("days").innerHTML = daysHtml;
+
+$("days").addEventListener("click", e => {
+  const b = e.target.closest(".day"); if (!b || b.disabled) return;
+  S.day = +b.dataset.d; S.time = null;
+  document.querySelectorAll(".day").forEach(x => x.setAttribute("aria-pressed", x === b));
+  ok("f-date"); renderTimes(); update();
+});
+
+function renderTimes(){
+  const groups = [["Morning", s => s.h < 12], ["Afternoon", s => s.h >= 12 && s.h < 17], ["Evening", s => s.h >= 17]];
+  const list = slots(S.day);
+  $("times").innerHTML = groups.map(([label, test]) => {
+    const g = list.filter(test); if (!g.length) return "";
+    return `<div class="period"><h3>${label}</h3><div class="times">${g.map(s => {
+      const local = inPk ? "" : `<small>${fmt(s.utc, visitorTz, {hour:"numeric", minute:"2-digit"})} yours</small>`;
+      return `<button type="button" class="time" data-u="${s.utc}" aria-pressed="${S.time===s.utc}">${fmt(s.utc,"Asia/Karachi",{hour:"numeric",minute:"2-digit"})}${local}</button>`;
+    }).join("")}</div></div>`;
+  }).join("");
+}
+$("times").addEventListener("click", e => {
+  const b = e.target.closest(".time"); if (!b) return;
+  S.time = +b.dataset.u;
+  document.querySelectorAll(".time").forEach(x => x.setAttribute("aria-pressed", x === b));
+  ok("f-time"); update();
+});
+
+/* ---------- Validation helpers ---------- */
+const bad = id => $(id).classList.add("bad");
+const ok  = id => $(id).classList.remove("bad");
+$("name").addEventListener("input", () => { ok("f-name"); update(); });
+$("phone").addEventListener("input", () => { ok("f-phone"); update(); });
+$("email").addEventListener("input", () => ok("f-email"));
+
+function phoneE164(){
+  let n = $("phone").value.replace(/\D/g, "");
+  const cc = $("cc").value.replace("+", "");
+  if (n.startsWith("00")) n = n.slice(2);
+  if (n.startsWith(cc) && n.length > 10) n = n.slice(cc.length);
+  n = n.replace(/^0+/, "");
+  return { digits: cc + n, local: n };
+}
+const validPhone = () => { const p = phoneE164(); return p.local.length >= 7 && p.local.length <= 12 && !($("cc").value === "+92" && p.local.length !== 10); };
+
+function update(){
+  $("fs1").classList.toggle("complete", $("name").value.trim().length > 1 && validPhone());
+  $("fs2").classList.toggle("complete", !!S.platform);
+  $("fs3").classList.toggle("complete", !!S.time);
+  if (S.time && S.platform){
+    $("recap").innerHTML = `<b>${S.platform}</b> call with ${rep.name} on <b>${fmt(S.time,"Asia/Karachi",{weekday:"long",day:"numeric",month:"long"})}</b> at <b>${fmt(S.time,"Asia/Karachi",{hour:"numeric",minute:"2-digit"})} PKT</b>`;
+    $("recap").classList.add("show");
+  } else $("recap").classList.remove("show");
+}
+
+/* ---------- Submit ---------- */
+$("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("name").value.trim(), email = $("email").value.trim();
+  const errs = [];
+  if (name.length < 2) errs.push("f-name");
+  if (!validPhone()) errs.push("f-phone");
+  if (!S.platform) errs.push("f-platform");
+  if (S.platform === "Google Meet" && !/^\S+@\S+\.\S+$/.test(email)) errs.push("f-email");
+  if (!S.day) errs.push("f-date");
+  else if (!S.time) errs.push("f-time");
+  errs.forEach(bad);
+  if (errs.length){ $(errs[0]).scrollIntoView({behavior:"smooth", block:"center"}); return; }
+
+  const p = phoneE164();
+  const lead = {
+    salesperson: rep.name,
+    name,
+    whatsapp: "+" + p.digits,
+    email: S.platform === "Google Meet" ? email : "",
+    city: $("city").value.trim(),
+    interest: S.interest.join(", "),
+    budget: $("budget").value,
+    platform: S.platform,
+    date: fmt(S.time,"Asia/Karachi",{weekday:"long",day:"numeric",month:"long",year:"numeric"}),
+    time_pkt: fmt(S.time,"Asia/Karachi",{hour:"numeric",minute:"2-digit"}) + " PKT",
+    time_visitor: inPk ? "Same as PKT" : fmt(S.time, visitorTz, {weekday:"short",day:"numeric",month:"short",hour:"numeric",minute:"2-digit"}) + ` (${visitorTz})`,
+    note: $("note").value.trim(),
+    source: [params.get("utm_source"), params.get("utm_campaign"), params.get("utm_content")].filter(Boolean).join(" / ") || (params.has("fbclid") ? "Facebook / Instagram ad" : "Direct")
+  };
+
+  $("submit").disabled = true; $("submit").textContent = "Booking…";
+
+  // 1) Backup to Netlify Forms
+  try {
+    await Promise.race([
+      fetch("/", { method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body: new URLSearchParams({"form-name":"booking", ...lead}).toString() }),
+      new Promise(r => setTimeout(r, 2500))
+    ]);
+  } catch(err) {}
+
+  // 2) Meta Pixel
+  if (window.fbq) fbq("track", "Lead", { content_name: CONFIG.brand, content_category: rep.name });
+
+  // 3) WhatsApp to the salesperson
+  const lines = [
+    `*New booking* 🏡 ${CONFIG.brand}`,
+    ``,
+    `*Name:* ${lead.name}`,
+    `*WhatsApp:* ${lead.whatsapp}`,
+    `https://wa.me/${p.digits}`,
+    (lead.city ? `*City:* ${lead.city}` : null),
+    (lead.interest ? `*Interested in:* ${lead.interest}` : null),
+    (lead.budget ? `*Budget:* ${lead.budget}` : null),
+    ``,
+    `*Meeting:* ${lead.platform}`,
+    (lead.email ? `*Email:* ${lead.email}` : null),
+    `*Date:* ${lead.date}`,
+    `*Time:* ${lead.time_pkt}`,
+    !inPk && `*Client's time:* ${lead.time_visitor}`,
+    (lead.note ? `\n*Note:* ${lead.note}` : null),
+    ``,
+    `_Source: ${lead.source}_`
+  ].filter(l => l !== null && l !== false).join("\n").replace(/\n{3,}/g, "\n\n");
+  const waUrl = `https://wa.me/${rep.whatsapp}?text=${encodeURIComponent(lines)}`;
+
+  $("waBtn").href = waUrl;
+  $("doneLine").textContent = `Thanks, ${name.split(" ")[0]}. ${rep.name} will call you at the time below.`;
+  $("ticket").innerHTML = [
+    ["Meeting", lead.platform], ["Date", lead.date.replace(/, \d{4}$/, "")], ["Time", lead.time_pkt],
+    ...(inPk ? [] : [["Your time", fmt(S.time, visitorTz, {hour:"numeric",minute:"2-digit"})]]),
+    ["Advisor", rep.name]
+  ].map(([k,v]) => `<div><span>${k}</span><strong>${v}</strong></div>`).join("");
+  $("form").style.display = "none";
+  document.querySelector(".advisor").style.display = "none";
+  $("done").classList.add("show");
+  document.querySelector(".card").scrollIntoView({behavior:"smooth", block:"start"});
+  setTimeout(() => { location.href = waUrl; }, 1800);
+});
+</script>
+</body>
+</html>
