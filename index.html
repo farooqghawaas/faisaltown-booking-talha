@@ -173,10 +173,9 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
           <div class="err">Please enter your job title.</div>
         </div>
 
-        <div class="field" id="f-budget">
-          <label class="lb" for="budget">Budget <span class="req">*</span></label>
+        <div class="field">
+          <label class="lb" for="budget">Budget <span class="opt">(optional)</span></label>
           <select class="input" id="budget"></select>
-          <div class="err">Please select your budget.</div>
         </div>
 
         <div class="field">
@@ -271,7 +270,7 @@ $("budget").innerHTML = `<option value="">Select a range</option>` + CONFIG.budg
 /* ---------- Validation ---------- */
 const bad = id => $(id).classList.add("bad");
 const ok  = id => $(id).classList.remove("bad");
-["name","phone","city","job","budget"].forEach(id => $(id).addEventListener("input", () => ok("f-" + id)));
+["name","phone","city","job"].forEach(id => $(id).addEventListener("input", () => ok("f-" + id)));
 
 function phoneE164(){
   let n = $("phone").value.replace(/\D/g, "");
@@ -293,7 +292,6 @@ $("form").addEventListener("submit", async e => {
   if (!validPhone()) errs.push("f-phone");
   if (city.length < 2) errs.push("f-city");
   if (job.length < 2) errs.push("f-job");
-  if (!$("budget").value) errs.push("f-budget");
   errs.forEach(bad);
   if (errs.length){ $(errs[0]).scrollIntoView({behavior:"smooth", block:"center"}); return; }
 
