@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Book a Free Consultation</title>
-<meta name="description" content="Book a free call with our property advisor.">
-<meta name="theme-color" content="#0E3A2D">
+<title>Talk to a Property Advisor</title>
+<meta name="description" content="Get plot prices and payment plans from our property advisor.">
+<meta name="theme-color" content="#A67B5B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,6 +29,7 @@ fbq('track', 'PageView');
 :root{
   --green:#0E3A2D; --green-2:#17503F; --green-soft:#EAF2ED; --green-line:#B9D3C4;
   --gold:#C9A04E; --gold-soft:#FBF5E8;
+  --brown:#A67B5B;
   --bg:#F3F5F3; --card:#FFFFFF; --ink:#101814; --muted:#66736D; --line:#E2E7E4;
   --danger:#C0352B; --wa:#1DA851;
 }
@@ -41,18 +42,18 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 svg{display:block}
 
 /* ---------- Hero ---------- */
-.hero{background:var(--green);color:#fff;padding:28px 20px 110px;position:relative;overflow:hidden}
+.hero{background:var(--brown);color:#fff;padding:28px 20px 110px;position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;
-  border:1px solid rgba(201,160,78,.35);box-shadow:0 0 0 40px rgba(255,255,255,.025),0 0 0 80px rgba(255,255,255,.02)}
+  border:1px solid rgba(255,255,255,.3);box-shadow:0 0 0 40px rgba(255,255,255,.04),0 0 0 80px rgba(255,255,255,.03)}
 .hero-in{max-width:520px;margin:0 auto;position:relative;z-index:1}
-.brand{font-size:.8rem;font-weight:700;letter-spacing:.04em;color:var(--gold)}
+.brand{font-size:.8rem;font-weight:700;letter-spacing:.04em;color:#FFF3E6}
 .hero h1{font-size:clamp(1.9rem,7.4vw,2.5rem);line-height:1.12;font-weight:800;margin-top:10px;letter-spacing:-.02em}
-.hero p{margin-top:10px;color:rgba(255,255,255,.75);font-size:1rem}
-.advisor{display:flex;align-items:center;gap:12px;margin-top:22px;padding:10px 16px 10px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;width:max-content;max-width:100%}
+.hero p{margin-top:10px;color:rgba(255,255,255,.85);font-size:1rem}
+.advisor{display:flex;align-items:center;gap:12px;margin-top:22px;padding:10px 16px 10px 10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:999px;width:max-content;max-width:100%}
 .avatar{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--green);display:grid;place-items:center;font-weight:800;overflow:hidden;flex-shrink:0}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .advisor b{display:block;font-size:.98rem}
-.advisor span{display:block;font-size:.8rem;color:rgba(255,255,255,.7)}
+.advisor span{display:block;font-size:.8rem;color:rgba(255,255,255,.8)}
 .online{width:9px;height:9px;border-radius:50%;background:#3DDC84;margin-left:4px;box-shadow:0 0 0 3px rgba(61,220,132,.2);flex-shrink:0}
 
 /* ---------- Card ---------- */
@@ -78,10 +79,6 @@ select.input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xml
 .err{display:none;font-size:.82rem;color:var(--danger);font-weight:600;margin-top:6px}
 .bad .err{display:block}
 .bad .input,.bad .phone{border-color:var(--danger);background:#FFF8F7}
-
-.chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.chip{height:46px;padding:0 10px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font-size:.88rem;font-weight:600;color:#34403A;transition:.15s}
-.chip[aria-pressed=true]{background:var(--green);border-color:var(--green);color:#fff}
 
 /* ---------- Footer of form ---------- */
 .actions{padding:0 20px 22px}
@@ -125,7 +122,7 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
 <!-- Netlify detects this hidden form at deploy time and keeps a backup of every lead -->
 <form name="booking" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input name="salesperson"><input name="name"><input name="whatsapp"><input name="city"><input name="job_title">
-  <input name="interest"><input name="budget">
+  <input name="budget">
   <textarea name="note"></textarea><input name="source"><input name="bot-field">
 </form>
 
@@ -133,7 +130,7 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
 <header class="hero">
   <div class="hero-in">
     <div class="brand" id="brand"></div>
-    <h1>Book your free property consultation</h1>
+    <h1>Get plot prices and payment plans from our advisor</h1>
     <p id="subline"></p>
     <div class="advisor">
       <div class="avatar" id="avatar"></div>
@@ -176,14 +173,10 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
           <div class="err">Please enter your job title.</div>
         </div>
 
-        <div class="field">
-          <span class="lb">Interested in <span class="opt">(optional)</span></span>
-          <div class="chips" id="interest"></div>
-        </div>
-
-        <div class="field">
-          <label class="lb" for="budget">Budget <span class="opt">(optional)</span></label>
+        <div class="field" id="f-budget">
+          <label class="lb" for="budget">Budget <span class="req">*</span></label>
           <select class="input" id="budget"></select>
+          <div class="err">Please select your budget.</div>
         </div>
 
         <div class="field">
@@ -193,7 +186,7 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
       </section>
 
       <div class="actions">
-        <button class="cta" type="submit" id="submit">Book my free call</button>
+        <button class="cta" type="submit" id="submit">Request a callback</button>
         <p class="safe"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your details are shared only with your advisor</p>
       </div>
     </form>
@@ -220,7 +213,7 @@ footer{text-align:center;font-size:.76rem;color:var(--muted);padding:4px 16px 26
    ===================================================================== */
 const CONFIG = {
   brand: "FAISAL TOWN II",
-  subline: "Get prices, plot options and payment plans on a quick call.",
+  subline: "Share your details and our advisor will send current prices, available plots and installment plans.",
 
   // One entry per salesperson. Link for each: yoursite.netlify.app/?rep=ID
   // whatsapp: digits only with country code. email: where this person gets every lead. photo: optional image file uploaded with the site (e.g. "talha.jpg")
@@ -230,7 +223,6 @@ const CONFIG = {
   defaultRep: "talha",                 // used when the link has no ?rep=
   copyEmail: "",                       // optional: your own email to get a copy of every lead
 
-  interests: ["Residential plot","Commercial plot"],
   budgets: ["Under 50 lakh","50 lakh to 1 crore","1 to 2 crore","2 to 5 crore","Above 5 crore"],
   footer: "© Faisal Town II"
 };
@@ -260,7 +252,7 @@ $("subline").textContent = CONFIG.subline;
 $("footer").textContent = CONFIG.footer;
 $("repName").textContent = rep.name;
 $("repTitle").textContent = rep.title;
-document.title = `Book a Free Consultation with ${rep.name}`;
+document.title = `Talk to ${rep.name} | Property Advisor`;
 $("avatar").innerHTML = rep.photo
   ? `<img src="${rep.photo}" alt="${rep.name}">`
   : rep.name.split(" ").filter(w => /^[A-Za-z]/.test(w)).map(w => w[0]).slice(0,2).join("");
@@ -275,22 +267,11 @@ $("cc").innerHTML = CODES.map(([c,f]) => `<option value="${c}">${f} ${c}</option
 $("cc").value = tzCode;
 
 $("budget").innerHTML = `<option value="">Select a range</option>` + CONFIG.budgets.map(b => `<option>${b}</option>`).join("");
-$("interest").innerHTML = CONFIG.interests.map(i => `<button type="button" class="chip" data-v="${i}" aria-pressed="false">${i}</button>`).join("");
-
-/* ---------- State ---------- */
-const S = { interest:[] };
-
-$("interest").addEventListener("click", e => {
-  const b = e.target.closest(".chip"); if (!b) return;
-  const on = b.getAttribute("aria-pressed") !== "true";
-  b.setAttribute("aria-pressed", on);
-  S.interest = on ? [...S.interest, b.dataset.v] : S.interest.filter(x => x !== b.dataset.v);
-});
 
 /* ---------- Validation ---------- */
 const bad = id => $(id).classList.add("bad");
 const ok  = id => $(id).classList.remove("bad");
-["name","phone","city","job"].forEach(id => $(id).addEventListener("input", () => ok("f-" + id)));
+["name","phone","city","job","budget"].forEach(id => $(id).addEventListener("input", () => ok("f-" + id)));
 
 function phoneE164(){
   let n = $("phone").value.replace(/\D/g, "");
@@ -312,6 +293,7 @@ $("form").addEventListener("submit", async e => {
   if (!validPhone()) errs.push("f-phone");
   if (city.length < 2) errs.push("f-city");
   if (job.length < 2) errs.push("f-job");
+  if (!$("budget").value) errs.push("f-budget");
   errs.forEach(bad);
   if (errs.length){ $(errs[0]).scrollIntoView({behavior:"smooth", block:"center"}); return; }
 
@@ -322,13 +304,12 @@ $("form").addEventListener("submit", async e => {
     whatsapp: "+" + p.digits,
     city,
     job_title: job,
-    interest: S.interest.join(", "),
     budget: $("budget").value,
     note: $("note").value.trim(),
     source: [params.get("utm_source"), params.get("utm_campaign"), params.get("utm_content")].filter(Boolean).join(" / ") || (params.has("fbclid") ? "Facebook / Instagram ad" : "Direct")
   };
 
-  $("submit").disabled = true; $("submit").textContent = "Booking…";
+  $("submit").disabled = true; $("submit").textContent = "Sending…";
 
   // 1) Backup to Netlify Forms
   try {
@@ -351,7 +332,6 @@ $("form").addEventListener("submit", async e => {
     `https://wa.me/${p.digits}`,
     `*City:* ${lead.city}`,
     `*Job title:* ${lead.job_title}`,
-    lead.interest ? `*Interested in:* ${lead.interest}` : null,
     lead.budget ? `*Budget:* ${lead.budget}` : null,
     lead.note ? `\n*Message:* ${lead.note}` : null,
     ``,
@@ -375,7 +355,6 @@ $("form").addEventListener("submit", async e => {
           "Chat link": `https://wa.me/${p.digits}`,
           "City": lead.city,
           "Job title": lead.job_title,
-          "Interested in": lead.interest || "-",
           "Budget": lead.budget || "-",
           "Message": lead.note || "-",
           "Salesperson": rep.name,
